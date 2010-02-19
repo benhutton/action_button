@@ -57,5 +57,5 @@ module ActionButton
     def button_tag(name, content, type, html_options = {})
       content_tag(:button, content, html_options.merge(:type => type, :name => name, :id => name))
     end
-
+  end
 end
