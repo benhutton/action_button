@@ -148,50 +148,5 @@ class ActionButtonTest < ActiveSupport::TestCase
       @button = nil
     end
   end
-  
-  
-  context 'ujs_remote_form script with options' do
-    setup do
-      @script = lowpro_remote_form 'form.action', :confirm => 'Do you want to do this?',
-                                                  :update => 'some-id', :with => "'size=' + $F('itemSize')"
-    end
     
-    should 'have lowpro event listenter and slector' do
-      expect(@script).to.match /Event\.addBehavior\(\{/
-      expect(@script).to.match /'form.action':\sRemote\.Form\(/
-    end
-    
-    should 'have an option for confirm' do
-      expect(@script).to.match /confirm:'Do you want to do this\?'/
-    end
-    
-    should 'have an option for update' do
-      expect(@script).to.match /update:'some-id'/
-    end
-    
-    should 'have an option for with' do
-      expect(@script).to.match /parameters:'size='\s\+\s\$F\('itemSize'\)/
-    end
-    
-    teardown do
-      @script = nil
-    end
-  end
-  
-  
-  context 'ujs_remote_form script with options' do
-    setup do
-      @script = lowpro_remote_form 'form.action', :update => { :success => 'items-div-id',
-                                                               :failure => 'error-flash'}
-    end
-    
-    should 'have an option for both update options' do
-      expect(@script).to.match /update:\{success:'items-div-id',failure:'error-flash'\}/
-    end
-    
-    teardown do
-      @script = nil
-    end
-  end
-  
 end
