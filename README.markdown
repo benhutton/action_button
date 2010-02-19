@@ -1,14 +1,11 @@
+Original version at http://github.com/vigetlabs/action_button.  This version removes the LowPro AJAX code.
+
 ActionButton
 ============
 
 This provides helpers for creating a non-AJAX form containing a single button element.
 Using a button element allows the actions to be safe, not javascript dependent,
 and easily styled.
-
-This plugin also includes a custom version of the lowpro javascript library, and
-a helper for adding a unobtrusive javascript snippet to handle AJAX form
-submission of the button.
-
 
 Methods and Options
 -------------------
@@ -28,14 +25,6 @@ Methods and Options
       * `:form_class` - set's the class attribute for the form tag
       * `:form_id` - set's the id attribute for the form tag
       * `:wrapper_class` - set's the class for the wrapper tag. default: `nil`
-* `lowpro_remote_form (selector, options)`
-   * `selector`: the CSS selector used to specify which element(s) to apply this observer to.
-   * `options`:
-      * all the standard `options_for_ajax` options used in all the `remote` Prototype helpers
-      * `:confirm` - presents the user with a confirm dialog before submitting form
-      * `:update` - can either be a single DOM ID specifying which element to update 
-                    or a hash of `:success` and `:failure` to update different elements based on the AJAX result.
-
 
 Examples
 --------
