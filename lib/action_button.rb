@@ -18,19 +18,14 @@ module ActionButton
     # ==== Options
     # * <tt>url_for_options</tt> acts the same as it does in <tt>form_tag</tt> or ActionController::Base#url_for
     # * accepts all normal HTML options that are generally available on <tt>content_tag</tt>
-    # * <tt>:wrapper_tag</tt> - this takes a symbol for the tag name to be used around the button
-    #   * default: <tt>:p</tt>
-    #   * a wrapper is needed so XHTML 1.0 Strict will validate
     # * <tt>:form_class</tt> - set's the class attribute for the form tag.
     # * <tt>:form_id</tt> - set's the id attribute for the form tag.
-    # * <tt>:wrapper_class</tt> - set's the class for the wrapper tag. default: <tt>nil</tt>
     # 
     # ==== Example
     #   <%= action_button 'delete_order', "Delete this Order", {:action => :delete, :id => order}, {:method => :delete} %> 
     #
     def action_button(name, content, url_for_options = {}, options = {}, *parameters_for_url)
       options.reverse_merge!({:class => name})
-      wrapper_tag = options.delete(:wrapper_tag) || :p
       
       if options[:id].blank?
         id = (url_for_options[:id] || options[:number]) ? name + (url_for_options[:id] || options.delete(:number)).to_s : name
@@ -43,9 +38,8 @@ module ActionButton
       output = form_tag(url_for_options, options.merge(:class => "#{form_class}", :id => "#{form_id}"), *parameters_for_url)
       options.delete(:method)
       
-      output << "\n<#{wrapper_tag}>#{options[:wrapper_class].blank? ? '' : ('class="'+options.delete(:wrapper_class)+'"')}"
       output << button_tag(id, content, 'submit', options)
-      output << "</#{wrapper_tag}>\n</form>"
+      output << "</form>"
       
       return output
     end
