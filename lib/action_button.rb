@@ -39,9 +39,9 @@ module ActionButton
       options.delete(:method)
       
       output << button_tag(id, content, 'submit', options)
-      output << "</form>"
+      output << "</form>".html_safe
       
-      return output
+      return output.html_safe
     end
     
     # Creates a button tag with the content passed to the content parameter inside.
